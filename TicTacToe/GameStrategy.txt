@@ -1,0 +1,48 @@
+Name: Avinash Ravi
+Username: avinravi
+========================================================
+Part - I:
+
+Turing test finds the ability of a machine to exhibit human like intelligence. In Turing test, a person interacts with a human/machine through a text-only 
+console by asking a series of questions. If the person is not able to distinguish between a human or machine based on the responses received, then the 
+machine is said to have passed the test. 
+Paul Allen uses the New York Regents Science Test for Fourth graders as a metric for measuring AI system’s ability. I have observed that the test has general 
+science questions and open ended questions. To answer the general science questions, science knowledge (may be a textbook) needs to be stored in the system. 
+The open ended questions requires some reasoning to solve them.  There are several challenges involved in this approach. First challenge is how the information 
+present in a textbook can be stored in the system such that it can understand the information and apply it elsewhere. The test also requires the student to 
+answer the questions by interpreting the images. If the system is able to interpret the images and answer the questions, the system is said to exhibit 
+some intelligence. But, I think this test is not a gold standard for measuring AI systems ability since the machine is not exhibiting human like intelligence. 
+It is just retrieving the data stored in it and it is not able to understand the context in which the question is asked. If the machine does not understand 
+the context, then it is not exhibiting intelligence. In Turing’s test, the machine has to interpret the context in which the question is asked to respond in 
+an appropriate manner. Otherwise, it fails the test. Hence, I think Turing test is the gold standard for measuring AI systems ability.
+
+
+========================================================
+Part - II:
+
+The strategy for the TicTacToe is as follows:
+
+1. If the firstmove is by the computer, it places it's first move in one of the corners or center.
+   If the firstmove is by the user:
+    -> If the user places the move in a corner, the computer plays its turn in the opposite corner. If the computer does not play in the opposite corner,
+       then there is a high chance of the user winning by creating a fork by placing in the corner positions in later moves.
+    -> If the user places the move in the center, the computer plays its turn in one of the corners. If the computer plays an edge, then only 2 winning 
+       combinations are eliminated. But, when placed in a corner, 3 of the winning combinations are eliminated.
+    -> If the user starts with an edge, then the computer plays its turn in the center or in the corners.
+2. After each move made by the user,
+    -> Computer checks if there is any chance of winning the game. If there is one, computer plays its turn in the appropriate position to win the game.
+    -> If there is no winning position available, computer checks if the user has a chance of winning. If there is one, the computer plays its turn to 
+       block the winning position. I'm not checking if the fork is present and blocking the first detected position.
+    -> If the user has no chance of winning, the computer plays its turn in the center of board (If center is not filled). Placing in the center of board 
+       eliminates maximum number of winning combinations for the opposite player and can be helpful to create a fork in the later moves.
+    -> If the center of the board is already placed, then the computer checks if there is a way to create a fork. Below are the possible combination of forks 
+       I'm trying to create. There are some other combination of forks possible and I did not check them. 
+       |O| |X|              |O| | |
+       | |O| |              |O|X| |        ('X' is the player creating forks and 'O' is the opponent)
+       |X| |X|              |X| |X|
+    -> If there are no possibility of occurance of forks, then the computer checks if there is any chance for the user to create a fork. If yes, the computer 
+       blocks the position that might create a fork.
+    -> If there is no possibility for an user to create a fork, then the computer checks if there are any unblocked winning combinations present. If there is 
+       an unblocked winning combination, the computer plays its turn in one of the winning combination positions.
+    -> If there are no best moves available, that means all the winning combinations are blocked and the game is headed for a draw. Hence, the computer randomly
+       plays in an empty position.
