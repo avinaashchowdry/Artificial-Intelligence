@@ -1,0 +1,24 @@
+#Avinash Ravi
+#avinravi@indiana.edu
+
+Script started on Sat 26 Sep 2015 07:52:40 AM EDT
+]0;avinravi@hulk:~/AI[?1034h[avinravi@hulk AI]$ python search.py 
+Doing Depth First Search  on presolved:
+The solution's cost is: 0, and involved expanding 1 verticies
+Finding the solution involved 0.000550985336304 seconds of walltime
+----------------------------------------------------------------------------------
+Doing Depth First Search  on easy:
+The solution's cost is: 10.1, and involved expanding 35 verticies
+Finding the solution involved 0.0285468101501 seconds of walltime
+----------------------------------------------------------------------------------
+Doing Depth First Search  on medium:
+Ran out of time for thinking
+The queue is of size: 1961
+----------------------------------------------------------------------------------
+Doing Depth First Search  on hard:
+Ran out of time for thinking
+The queue is of size: 4061
+----------------------------------------------------------------------------------
+]0;avinravi@hulk:~/AI[avinravi@hulk AI]$ exit
+
+Script done on Sat 26 Sep 2015 07:53:48 AM EDT

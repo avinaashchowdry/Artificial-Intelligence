@@ -1,0 +1,21 @@
+#Avinash Ravi
+#avinravi@indiana.edu
+
+Script started on Sat 26 Sep 2015 07:47:17 AM EDT
+]0;avinravi@hulk:~/AI[?1034h[avinravi@hulk AI]$ python search.py 
+Doing Breadth First Search on presolved:
+The solution's cost is: 0, and involved expanding 1 verticies
+Finding the solution involved 0.000462055206299 seconds of walltime
+----------------------------------------------------------------------------------
+Doing Breadth First Search on easy:
+The solution's cost is: 2.1, and involved expanding 11 verticies
+Finding the solution involved 0.00824999809265 seconds of walltime
+----------------------------------------------------------------------------------
+Doing Breadth First Search on medium:
+Ran out of time for thinking
+The queue is of size: 5701
+----------------------------------------------------------------------------------
+Doing Breadth First Search on hard:
+Ran out of time for thinking
+The queue is of size: 6568
+----------------------------------------------------------------------------------

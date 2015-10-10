@@ -1,0 +1,62 @@
+#Avinash Ravi
+#avinravi@indiana.edu
+
+Script started on Sat 26 Sep 2015 08:01:01 AM EDT
+]0;avinravi@hulk:~/AI[?1034h[avinravi@hulk AI]$ python search.py ls[Kpython search.py 
+
+#Heuristic 1 - Manhattan Distance
+
+Doing A* with heuristic manhattanDistance on presolved:
+The solution's cost is: 0, and involved expanding 1 verticies
+Finding the solution involved 0.000427007675171 seconds of walltime
+----------------------------------------------------------------------------------
+Doing A* with heuristic manhattanDistance on easy:
+The solution's cost is: 2.1, and involved expanding 4 verticies
+Finding the solution involved 0.0033438205719 seconds of walltime
+----------------------------------------------------------------------------------
+Doing A* with heuristic manhattanDistance on medium:
+The solution's cost is: 18.1, and involved expanding 693 verticies
+Finding the solution involved 1.04828000069 seconds of walltime
+----------------------------------------------------------------------------------
+Doing A* with heuristic manhattanDistance on hard:
+Ran out of time for thinking
+The queue is of size: 8782
+----------------------------------------------------------------------------------
+
+#Heuristic 2 - Modified Manhattan Distance
+
+Doing A* with heuristic modifiedManhattanDistance on presolved:
+The solution's cost is: 0, and involved expanding 1 verticies
+Finding the solution involved 0.000448942184448 seconds of walltime
+----------------------------------------------------------------------------------
+Doing A* with heuristic modifiedManhattanDistance on easy:
+The solution's cost is: 2.1, and involved expanding 4 verticies
+Finding the solution involved 0.00321507453918 seconds of walltime
+----------------------------------------------------------------------------------
+Doing A* with heuristic modifiedManhattanDistance on medium:
+The solution's cost is: 17.3, and involved expanding 208 verticies
+Finding the solution involved 0.256592988968 seconds of walltime
+----------------------------------------------------------------------------------
+Doing A* with heuristic modifiedManhattanDistance on hard:
+The solution's cost is: 42.3, and involved expanding 1597 verticies
+Finding the solution involved 3.96987199783 seconds of walltime
+----------------------------------------------------------------------------------
+
+#heuristic 3 - Euclidian Distance
+
+Doing A* with heuristic euclidianDistance on presolved:
+The solution's cost is: 0, and involved expanding 1 verticies
+Finding the solution involved 0.000629901885986 seconds of walltime
+----------------------------------------------------------------------------------
+Doing A* with heuristic euclidianDistance on easy:
+The solution's cost is: 2.1, and involved expanding 4 verticies
+Finding the solution involved 0.00446891784668 seconds of walltime
+----------------------------------------------------------------------------------
+Doing A* with heuristic euclidianDistance on medium:
+The solution's cost is: 17.3, and involved expanding 1077 verticies
+Finding the solution involved 1.96273088455 seconds of walltime
+----------------------------------------------------------------------------------
+Doing A* with heuristic euclidianDistance on hard:
+Ran out of time for thinking
+The queue is of size: 11255
+----------------------------------------------------------------------------------

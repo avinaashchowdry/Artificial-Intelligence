@@ -1,0 +1,64 @@
+#Avinash Ravi
+#avinravi@indiana.edu
+
+Script started on Sat 26 Sep 2015 07:55:21 AM EDT
+]0;avinravi@hulk:~/AI[?1034h[avinravi@hulk AI]$ python search.py ls[Kpython search.py 
+
+#Heuristic 1 - Manhattan distance
+
+Doing Best First with heuristic manhattanDistance on presolved:
+The solution's cost is: 0, and involved expanding 1 verticies
+Finding the solution involved 0.000515937805176 seconds of walltime
+----------------------------------------------------------------------------------
+Doing Best First with heuristic manhattanDistance on easy:
+The solution's cost is: 2.1, and involved expanding 10 verticies
+Finding the solution involved 0.00960683822632 seconds of walltime
+----------------------------------------------------------------------------------
+Doing Best First with heuristic manhattanDistance on medium:
+The solution's cost is: 24.3, and involved expanding 38 verticies
+Finding the solution involved 0.0581469535828 seconds of walltime
+----------------------------------------------------------------------------------
+Doing Best First with heuristic manhattanDistance on hard:
+Ran out of time for thinking
+The queue is of size: 8394
+----------------------------------------------------------------------------------
+
+
+#Heuristic 2 - Modified Manhattan distance
+
+Doing Best First with heuristic modifiedManhattanDistance on presolved:
+The solution's cost is: 0, and involved expanding 1 verticies
+Finding the solution involved 0.000547885894775 seconds of walltime
+----------------------------------------------------------------------------------
+Doing Best First with heuristic modifiedManhattanDistance on easy:
+The solution's cost is: 2.1, and involved expanding 4 verticies
+Finding the solution involved 0.00406289100647 seconds of walltime
+----------------------------------------------------------------------------------
+Doing Best First with heuristic modifiedManhattanDistance on medium:
+The solution's cost is: 24.3, and involved expanding 38 verticies
+Finding the solution involved 0.0569159984589 seconds of walltime
+----------------------------------------------------------------------------------
+Doing Best First with heuristic modifiedManhattanDistance on hard:
+Ran out of time for thinking
+The queue is of size: 3602
+----------------------------------------------------------------------------------
+
+
+#Heuristic 3 - Euclidian Distance
+
+Doing Best First with heuristic euclidianDistance on presolved:
+The solution's cost is: 0, and involved expanding 1 verticies
+Finding the solution involved 0.000506162643433 seconds of walltime
+----------------------------------------------------------------------------------
+Doing Best First with heuristic euclidianDistance on easy:
+The solution's cost is: 2.1, and involved expanding 4 verticies
+Finding the solution involved 0.00331020355225 seconds of walltime
+----------------------------------------------------------------------------------
+Doing Best First with heuristic euclidianDistance on medium:
+The solution's cost is: 25.9, and involved expanding 51 verticies
+Finding the solution involved 0.0586628913879 seconds of walltime
+----------------------------------------------------------------------------------
+Doing Best First with heuristic euclidianDistance on hard:
+Ran out of time for thinking
+The queue is of size: 4776
+----------------------------------------------------------------------------------
