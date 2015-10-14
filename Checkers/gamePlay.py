@@ -257,7 +257,7 @@ def printBoard(board):
 					]
 	print '-'*33, '\t', '-'*41
 	for i in range(0,8):		
-		print '|',
+		print '|'
 		print ' | '.join(board[i]), '|'	, '\t|' , ' | '.join(numberedBoard[i]), '|'
 		print '-'*33, '\t', '-'*41
 	
@@ -279,7 +279,7 @@ def playGame(p1, p2, verbose, t = 150):
 	p2time = t
 	p1realTime = t
 	p2realTime = t
-	movesRemaining = 150
+	movesRemaining = 1500
 	
 	while isAnyMovePossible(board, currentColor) == True:
 		tempBoard = deepcopy(board)
