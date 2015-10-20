@@ -1,5 +1,6 @@
 import gamePlay
 from copy import deepcopy
+import random
 
 def gridToSerial(x, y):
 	# Returns the serial 1~32 of cell given the grid position(0,0)~(7,7)
@@ -82,4 +83,5 @@ def getAllPossibleMoves(board, color):
 			if isCapturePossible == isCapture:
 				for m in l:
 					moves.append(m)
+	random.shuffle(moves)
 	return moves
