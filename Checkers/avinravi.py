@@ -29,25 +29,17 @@ currentBoard = None
 best_move = None
 #Stores the max_depth of minmax tree. Defaulting it to 7
 maxDepth = 7
-#Stores the previous move
-prevMove = [0,0]
-#Stores the move before previous move
-prePrevMove = [7,7]
-#Stores the move that is repeated
-repeat_move = [0,0]
 #Checks if the move is the first move
 initialMove = True
 #Stores the initial time and total moves
 timeStarted = 0
 totMoves = 0
-#Stores the previous time stamp
-prevTime = 0
 
 
 #The evaluation function is determined based on the number of moves remaining.
 #In the beginning of game, the strategy is attacking
 #In the middle of the game, the strategy is a combination of attacking and defensive ((More of defensive)
-#In the ending of game, the strategy is defensive
+#In the ending of game, the strategy is more defensive
 
 
 '''
@@ -58,6 +50,7 @@ The weights are assigned as:
 The distance from the center squares of the board is the weight of a position.
 15, 18, position left of 15, position right of 18 are the center squares. These are allocated weight of 1.
 The positions adjacent to center squares has weight 2 and so on.
+Double the weight if the coin is a king
 '''
 def evaluationDefensive(board):
     # Weight Based Evaluation function
@@ -71,8 +64,12 @@ def evaluationDefensive(board):
         x = xy[0]
         y = xy[1]
 
-        if board[x][y].upper() == myColor.upper():
+        if board[x][y] == myColor:
             value += weightedBoard[x][y]
+        elif board[x][y] == myColor.upper():
+            value += 2 * weightedBoard[x][y]
+        elif board[x][y] == opponentColor.upper():
+            value -= 2 * weightedBoard[x][y]
         else:
             value -= weightedBoard[x][y]
 
@@ -115,30 +112,28 @@ def evaluationAttacking(board):
 Uses this evaluation function in middle of the game
 '''
 def evaluationCombination(board):
-    return 2 * evaluationAttacking(board) + 3 * evaluationDefensive(board)
+    return 5 * evaluationAttacking(board) + 2 * evaluationDefensive(board)
+
+'''
+Uses this evaluation function at the end of game
+'''
+def evaluationCombination2(board):
+    return 3 * evaluationAttacking(board) + 2 * evaluationDefensive(board)
 
 def nextMove(board, color, time, movesRemaining):
     global myColor, opponentColor, best_move, currentBoard, maxDepth
-    global prePrevMove, prevMove, repeat_move
-    global initialMove, totMoves, timeStarted, prevTime
+    global initialMove, totMoves, timeStarted
 
-    #Store my color, opponents color and initial board state as global variables
-    myColor = color
-    opponentColor = gamePlay.getOpponentColor(color)
+    #Store initial board state as global variables
     currentBoard = board
 
-    #Store the initial time and moves in the initial move
+    #Store the initial time, moves, my color and opponents color in the initial move
     if initialMove:
+        myColor = color
+        opponentColor = gamePlay.getOpponentColor(color)
         timeStarted = time
         totMoves = movesRemaining
         initialMove = False
-        #If the player color is red and it is an initial move, then return a random best move
-        if myColor == 'r':
-            #Possible first moves for a red coin
-            moves = [[10, 15], [9, 13], [10, 14], [11, 15], [11, 16], [12, 16]]
-            prePrevMove = prevMove
-            prevMove = moves[random.randint(0, 5)]
-            return prevMove
 
     #Calculates the 1/15th part of time, 1/6th parts of time
     time15 = timeStarted / 15
@@ -146,14 +141,14 @@ def nextMove(board, color, time, movesRemaining):
 
     #Modify the maximum depth based on the time available
     #If timeStarted = 150 
-    #time > 140 
+    #time > 140
     if time > (timeStarted - time15):
         maxDepth = 5
-    #time > 120
-    elif time > (timeStarted - 3 * time15):
+    #time > 130
+    if time > (timeStarted - 2 * time15):
         maxDepth = 6
-    #time > 50
-    elif time > 5 * time15:
+    #time > 60
+    elif time > 6 * time15:
         maxDepth = 7
     #time > 30
     elif time > 3 * time15:
@@ -165,23 +160,22 @@ def nextMove(board, color, time, movesRemaining):
     else:
         maxDepth = 4
 
-    #Readjust the max depth if the time consumed for a move is greater than 15 seconds
-    if (prevTime - time > timeStarted/7.5):
-        maxDepth -= 1
+    myPieces = gamePlay.countPieces(board, myColor)
+    opponentPieces = gamePlay.countPieces(board, opponentColor)
 
-    #Updating the time stamp value
-    prevTime = time
+    #if maxDepth < 7 and myPieces < opponentPieces:
+    #    maxDepth += 1
 
     #If there is a single move, return that move
     moves = getAllPossibleMoves(board, myColor)
     if (len(moves)) == 1:
-        prePrevMove = prevMove
-        prevMove = moves[0]
         return moves[0]
-
+    
     #Determines the evaluation function based on number of moves remaining
-    if gamePlay.countPieces(board, myColor) < gamePlay.countPieces(board, opponentColor) or movesRemaining < totMoves/3:
-        evaluationFunc = evaluationDefensive
+    if movesRemaining < totMoves/10:
+        evaluationFunc = evaluationCombination2
+        if myPieces < opponentPieces:
+            evaluationFunc = evaluationCombination
     elif movesRemaining <= (totMoves - totMoves/10):
         evaluationFunc = evaluationCombination
     else:
@@ -190,16 +184,7 @@ def nextMove(board, color, time, movesRemaining):
     #Call the minimax algorithm with alphabeta pruning
     moveVal = alphaBeta(board, maxDepth, Decimal('-Infinity'), Decimal('Infinity'), True, evaluationFunc)
 
-    #Checks if the next_move is returning the same moves repeatedly
-    if ((prePrevMove == best_move) and
-        (prevMove[0] == best_move[1] and prevMove[1] == best_move[0])):
-        repeat_move = best_move
-        #Call alpha beta pruning with depth 4 again
-        moveVal = alphaBeta(board, 4, Decimal('-Infinity'), Decimal('Infinity'), True, evaluationFunc)
-
     #Returns the global best move variable
-    prePrevMove = prevMove
-    prevMove = best_move
     return best_move
 
 def alphaBeta(board, depth, alpha, beta, maxPlayer, evaluationFunc):
@@ -217,10 +202,6 @@ def alphaBeta(board, depth, alpha, beta, maxPlayer, evaluationFunc):
         if(len(moves) == 0):
             return evaluationFunc(board)
         for move in moves:
-            #Checks if the current move is a move repeated in previous steps
-            if move == repeat_move:
-                repeat_move = [0,0]
-                continue
             newBoard = deepcopy(board)
             #Play the next legal move
             gamePlay.doMove(newBoard,move)
